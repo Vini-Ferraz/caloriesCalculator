@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMR Calculator</title>
+</head>
+<body>
+    <script>
+
+        // The formula for men is: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years). The formula for women is: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
+        function calculateCalories(gender, weigth, heigth, age) {
+
+            let result;
+            
+            if (gender === "male") {
+                result = 88.362 + (13.8397 * weigth) + (4.799 * heigth) - (5.677 * age);
+            } else {
+                result = 447.593 + (9.247 * weigth) + (3.098 * heigth) - (4.330 * age);
+            }
+            return Math.floor(result);
+        }
+    </script>
+</body>
+</html>
