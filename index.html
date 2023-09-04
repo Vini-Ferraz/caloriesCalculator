@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMR Calculator</title>
+    <link rel="stylesheet" href= "styleSheet\stylesheet.css">
 </head>
+
 <body>
+    <main id="mainBackground">
+        <section id="mainBox">
+            <article id="formBox">
+                <h1 id="notRobotoFont">BMR CALCULATOR</h1>
+                <hr>
+                <form id="formFlex">
+                    <label for="height" class="normalRobotoFont">Heigth (cm):</label>
+                    <input type="number" name="height" id="height" class="inputBox normalRobotoFont" required/>
+
+                    <label for="weight" class="normalRobotoFont">Weight (kg):</label>
+                    <input type="number" name="weight" id="weight" class="inputBox normalRobotoFont" required/>
+
+                    <label for="age" class="normalRobotoFont">Age:</label>
+                    <input type="number" name="age" id="age" class="inputBox normalRobotoFont" required/>
+
+                    <label for="gender" class="normalRobotoFont">Gender:</label>
+                    <select name="gender" id="gender" class="inputBox normalRobotoFont">
+                        <option name="female" id="female">Female</option>
+                        <option name="male" id="male">Male</option>
+                    </select>
+
+                    <p id="result" class="semiBoldRobotoFont resultFlex">Your BMR is 2017 Calories!</p>
+                    
+                    <div id="buttonFlex">
+                        <button type="submit" id="button" class="boldRobotoFont">CALCULATE</button>
+                    </div>
+
+                </form>
+            </article>
+            <aside id="imageBox">
+                <figure>
+                    <img src="images\figure.png" alt="a figure of a woman thinking about food" id="image">
+                </figure>
+            </aside>
+        </section>
+    </main>
+
     <script>
 
         // The formula for men is: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years). The formula for women is: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
-        function calculateCalories(gender, weigth, heigth, age) {
+
+        let height = document.getElementById("height").value;
+        console.log(height);
+
+        function calculateCalories(gender, weigth, height, age) {
 
             let result;
             
             if (gender === "male") {
-                result = 88.362 + (13.8397 * weigth) + (4.799 * heigth) - (5.677 * age);
+                result = 88.362 + (13.8397 * weigth) + (4.799 * height) - (5.677 * age);
             } else {
-                result = 447.593 + (9.247 * weigth) + (3.098 * heigth) - (4.330 * age);
+                result = 447.593 + (9.247 * weigth) + (3.098 * height) - (4.330 * age);
             }
             return Math.floor(result);
         }
     </script>
 </body>
+
 </html>
