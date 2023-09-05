@@ -14,7 +14,7 @@
             <article id="formBox">
                 <h1 id="notRobotoFont">BMR CALCULATOR</h1>
                 <hr>
-                <form id="formFlex">
+                <div id="formFlex">
                     <label for="height" class="normalRobotoFont">Heigth (cm):</label>
                     <input type="number" name="height" id="height" class="inputBox normalRobotoFont" required/>
 
@@ -30,13 +30,13 @@
                         <option name="male" id="male">Male</option>
                     </select>
 
-                    <p id="result" class="semiBoldRobotoFont resultFlex">Your BMR is 2017 Calories!</p>
+                    <p id="result" class="semiBoldRobotoFont resultFlex">Insert Your Data</p>
                     
                     <div id="buttonFlex">
-                        <button type="submit" id="button" class="boldRobotoFont">CALCULATE</button>
+                        <button id="myButton" class="boldRobotoFont">CALCULATE</button>
                     </div>
 
-                </form>
+                </div>
             </article>
             <aside id="imageBox">
                 <figure>
@@ -50,20 +50,34 @@
 
         // The formula for men is: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years). The formula for women is: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
 
-        let height = document.getElementById("height").value;
-        console.log(height);
+        document.getElementById("myButton").onclick = function() {
+            let heightValue = document.getElementById("height").value;
+            let weightValue = document.getElementById("weight").value;
+            let ageValue = document.getElementById("age").value;
+            let genderValue = document.getElementById("gender").value;
 
-        function calculateCalories(gender, weigth, height, age) {
+            let myRegex = /[^0-9]/g;
+            let myRegexGender = /[^Female | Male]/g;
 
-            let result;
-            
-            if (gender === "male") {
-                result = 88.362 + (13.8397 * weigth) + (4.799 * height) - (5.677 * age);
+            let result = myRegex.test(heightValue);
+            let result1 = myRegex.test(weightValue);
+            let result2 = myRegex.test(ageValue);
+            let result3 = myRegexGender.test(genderValue);
+
+            if (result === true || result1 === true || result2 === true || result3 === true) {
+                document.getElementById("result").innerHTML = "INVALID DATA, CHECK YOUR INPUTS AND TRY AGAIN."
             } else {
-                result = 447.593 + (9.247 * weigth) + (3.098 * height) - (4.330 * age);
+                let finalResult;
+                if (genderValue === "Male") {
+                    finalResult = 88.362 + (13.8397 * weightValue) + (4.799 * heightValue) - (5.677 * ageValue);
+                } else {
+                    finalResult = 447.593 + (9.247 * weightValue) + (3.098 * heightValue) - (4.330 * ageValue);
+                }
+                
+                document.getElementById("result").innerHTML = "Your BMR is " + Math.floor(finalResult) + " calories!"
+            
             }
-            return Math.floor(result);
-        }
+        };
     </script>
 </body>
 
